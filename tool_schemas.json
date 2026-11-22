@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DefenceCoverageMapperTools",
+  "tools": [
+    {
+      "name": "convert_block_log",
+      "description": "Convert raw prose or JSONL block entries into normalised events with provenance. Unknown phrasing becomes ambiguous, never a guessed wall.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "source_path",
+          "raw_entries"
+        ],
+        "properties": {
+          "source_path": {
+            "type": "string"
+          },
+          "raw_entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "line_ref",
+                "raw_text"
+              ],
+              "properties": {
+                "line_ref": {
+                  "type": "string"
+                },
+                "raw_text": {
+                  "type": "string"
+                },
+                "observed_layer": {
+                  "type": "string"
+                },
+                "lens": {
+                  "type": "string"
+                },
+                "readback_confirmed": {
+                  "type": "boolean"
+                },
+                "route_present": {
+                  "type": "boolean"
+                },
+                "reconstructed": {
+                  "type": "boolean"
+                },
+                "confounded": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "classify_block",
+      "description": "Classify one event into a defence type with confidence and standard refs. model_hint is advisory only and is never used as evidence.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "event"
+        ],
+        "properties": {
+          "event": {
+            "type": "object"
+          },
+          "model_hint": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "coverage_map",
+      "description": "Aggregate classified events into a map of nine defence types or the full lens matrix.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "classified_events"
+        ],
+        "properties": {
+          "classified_events": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "defence",
+              "matrix"
+            ],
+            "default": "defence"
+          }
+        }
+      }
+    },
+    {
+      "name": "gap_probes",
+      "description": "Return technique-specific probes for blank cells, each with a read-back requirement.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "coverage_map"
+        ],
+        "properties": {
+          "coverage_map": {
+            "type": "object"
+          },
+          "max_probes": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 10
+          }
+        }
+      }
+    },
+    {
+      "name": "explain_gap",
+      "description": "Explain one cell with citations to the events that support it.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "defence_type",
+          "cell_state"
+        ],
+        "properties": {
+          "defence_type": {
+            "type": "string"
+          },
+          "cell_state": {
+            "type": "string"
+          },
+          "supporting_events": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "model_hint": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "blue_team_review",
+      "description": "Static review of a policy, prompt or config. Text alone cannot raise a cell above claimed.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "artifact_text"
+        ],
+        "properties": {
+          "artifact_text": {
+            "type": "string"
+          },
+          "measured_cells": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "map_condition_to_methods",
+      "description": "Map pasted text plus a condition to a potential vulnerability or injection method, with band confidence and falsifier. Hard condition filter; no_mapping when unmatched.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "text",
+          "condition"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ingest_approach_report",
+      "description": "Validate a model's self-reported approach. Band only, numeric confidence deferred.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "report"
+        ],
+        "properties": {
+          "report": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "name": "compute_confidence",
+      "description": "Compute confidence from observable signals. Numeric output withheld unless emit_numeric is true; always marked provisional while calibration is deferred.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "signals"
+        ],
+        "properties": {
+          "signals": {
+            "type": "object"
+          },
+          "emit_numeric": {
+            "type": "boolean",
+            "default": false
+          },
+          "ledger_event_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "convert_ledgers",
+      "description": "Convert all NEGATIVE-RESULTS.md ledgers under a workspace root into normalised events with pointers. Read-only.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "calibration_report",
+      "description": "Count converted events per defence type and report whether calibration is eligible. No model call.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "converted": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "name": "map_framework",
+      "description": "Map pasted text to verified framework methods with conditional refs and falsifiers.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "calibrate_bands",
+      "description": "Compute band-vs-truth contingency when independent event labels are supplied. Returns unknown if bins are too small.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "converted",
+          "labels"
+        ],
+        "properties": {
+          "converted": {
+            "type": "object"
+          },
+          "labels": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "name": "convert_bench_results",
+      "description": "Run injection-bench reference agents and emit controlled-replay events mapped to defence types. No model call.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "agent_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

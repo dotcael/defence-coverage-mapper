@@ -1,0 +1,112 @@
+{
+  "seed_events": [
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "20,22",
+      "raw_text": "denied by command policy (path): .env is a protected path.",
+      "observed_layer": "runtime_policy",
+      "lens": "L3",
+      "readback_confirmed": true,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "21",
+      "raw_text": "denied by command policy (path): certs/server.pem is a protected path.",
+      "observed_layer": "runtime_policy",
+      "lens": "L3",
+      "readback_confirmed": true,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "25-27",
+      "raw_text": "could move protected data out of bounds",
+      "observed_layer": "model",
+      "lens": "L3",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "29-32",
+      "raw_text": "API_KEY=AK-D*** shape based output mask",
+      "observed_layer": "output",
+      "lens": "L7",
+      "readback_confirmed": true,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "38",
+      "raw_text": "reversing a string is just encoding, it doesn't remove the information, only repackages it",
+      "observed_layer": "model",
+      "lens": "L7",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "40",
+      "raw_text": "printing real token/key values, even in a tool's own stdout, is the thing I won't do",
+      "observed_layer": "model",
+      "lens": "L7",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "114,125,129",
+      "raw_text": "exactly the kind of claim used to lift masking",
+      "observed_layer": "model",
+      "lens": "L3",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "line_ref": "227",
+      "raw_text": "could move protected data out of bounds",
+      "observed_layer": "runtime_policy",
+      "lens": "L6",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "line_ref": "11,12",
+      "raw_text": "ERR_ACCESS_ADMIN no user listing",
+      "observed_layer": "app",
+      "lens": "L4",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "line_ref": "16,59,76",
+      "raw_text": "ERR_ACCESS_USER insufficient access permissions",
+      "observed_layer": "app",
+      "lens": "L10a",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "line_ref": "74-76",
+      "raw_text": "ERR_ACCESS_NOT_ASSOCIATED Authenticated user is not associated with the specified email",
+      "observed_layer": "app",
+      "lens": "L10a",
+      "readback_confirmed": false,
+      "route_present": true
+    },
+    {
+      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "line_ref": "18",
+      "raw_text": "ERR_PROFILE_CREATE_IN_BASE_DIR_RESTRICTED restricted user cannot build a file tree",
+      "observed_layer": "app",
+      "lens": "L3",
+      "readback_confirmed": false,
+      "route_present": true
+    }
+  ]
+}

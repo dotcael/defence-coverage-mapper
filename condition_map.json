@@ -1,0 +1,445 @@
+{
+  "version": "MB-1.1.0",
+  "condition_vocabulary": [
+    "AI injection",
+    "API authorization",
+    "tool-use abuse"
+  ],
+  "condition_matching": "case-insensitive, whitespace-normalized exact match; unknown condition returns no_mapping",
+  "confidence_bands": [
+    "unknown",
+    "low",
+    "medium",
+    "high"
+  ],
+  "framework_policy": {
+    "background_only": [
+      "CWE-20",
+      "CWE-74",
+      "CWE-284"
+    ],
+    "allowed_with_review": [
+      "CWE-77",
+      "CWE-862"
+    ],
+    "allowed": [
+      "CWE-639",
+      "OWASP LLM01:2025",
+      "OWASP LLM02:2025",
+      "OWASP LLM05:2025",
+      "OWASP LLM06:2025",
+      "OWASP LLM08:2025",
+      "OWASP LLM10:2025",
+      "OWASP API1:2023",
+      "OWASP API3:2023",
+      "OWASP API4:2023",
+      "OWASP API5:2023",
+      "AML.T0051",
+      "AML.T0051.001",
+      "AML.T0053",
+      "AML.T0054",
+      "AML.T0080",
+      "T1059",
+      "T1190",
+      "T1078"
+    ],
+    "partial": [
+      "ASVS v5.0.0-16.3.2",
+      "ASVS v5.0.0-16.3.3"
+    ],
+    "unreachable": [
+      "ISO/IEC 42001 clause ids",
+      "OWASP MASVS ids",
+      "Google SAIF element numbers",
+      "CAPEC for LLM prompt injection"
+    ]
+  },
+  "methods": {
+    "AI injection": [
+      {
+        "method_id": "MB-AIINJ-01",
+        "method_name": "indirect prompt injection via untrusted content reaching model context",
+        "lens": "L7",
+        "defence_target": "DT-09",
+        "attributes": [
+          "indirect prompt injection",
+          "untrusted content",
+          "document as instruction",
+          "injected instruction",
+          "prompt injection via file",
+          "retrieved content"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP",
+            "id": "LLM01:2025",
+            "policy": "allowed"
+          },
+          {
+            "framework": "MITRE ATLAS",
+            "id": "AML.T0051.001",
+            "policy": "allowed"
+          }
+        ],
+        "measured_evidence": [],
+        "falsifier": "a seed event where untrusted retrieved content causes an action that would not otherwise occur"
+      },
+      {
+        "method_id": "MB-AIINJ-02",
+        "method_name": "system prompt or guardrail prompt as the claimed control",
+        "lens": "L9",
+        "defence_target": "DT-02",
+        "attributes": [
+          "system prompt",
+          "system instruction",
+          "safety rule",
+          "guardrail prompt"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP",
+            "id": "LLM01:2025",
+            "policy": "allowed"
+          },
+          {
+            "framework": "OWASP",
+            "id": "LLM07:2025",
+            "policy": "related_risk_not_control"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-intent-refusal",
+            "signal_type": "semantic_refusal",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a jailbreak prompt that bypasses a stated system prompt with read-back confirming the refusal did not fire"
+      },
+      {
+        "method_id": "MB-AIINJ-03",
+        "method_name": "model-layer refusal mistaken for an application-layer control",
+        "lens": "L3",
+        "defence_target": "DT-03",
+        "attributes": [
+          "model refused",
+          "model intent",
+          "refusal",
+          "the model won't",
+          "won't do"
+        ],
+        "standard_refs": [],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-reverse-encode",
+            "signal_type": "semantic_refusal",
+            "tag": "measured"
+          },
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-decoy-reframe",
+            "signal_type": "semantic_refusal",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a model-layer refusal treated as an app control where the same technique succeeds via a second route"
+      },
+      {
+        "method_id": "MB-AIINJ-04",
+        "method_name": "persistent agent context poisoning",
+        "lens": "L5",
+        "defence_target": "DT-09",
+        "attributes": [
+          "context poisoning",
+          "persistent memory",
+          "poisoned memory",
+          "agent memory"
+        ],
+        "standard_refs": [
+          {
+            "framework": "MITRE ATLAS",
+            "id": "AML.T0080",
+            "policy": "allowed"
+          },
+          {
+            "framework": "OWASP",
+            "id": "LLM08:2025",
+            "policy": "allowed_only_if_vectors_or_embeddings"
+          }
+        ],
+        "measured_evidence": [],
+        "falsifier": "an effect limited to one prompt with no persistence"
+      }
+    ],
+    "API authorization": [
+      {
+        "method_id": "MB-API-AUTHZ-01",
+        "method_name": "broken object-level authorization",
+        "lens": "L10a",
+        "defence_target": "DT-06",
+        "attributes": [
+          "object level",
+          "object-level",
+          "authorization bypass",
+          "missing authorization",
+          "owner check",
+          "IDOR",
+          "insecure direct object",
+          "bola",
+          "broken object level"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP API",
+            "id": "API1:2023",
+            "policy": "allowed"
+          },
+          {
+            "framework": "CWE",
+            "id": "CWE-639",
+            "policy": "allowed"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "event_id": "ERR_ACCESS_USER",
+            "signal_type": "auth_denied",
+            "tag": "measured",
+            "count": 3
+          },
+          {
+            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "event_id": "ERR_ACCESS_NOT_ASSOCIATED",
+            "signal_type": "auth_denied",
+            "tag": "measured",
+            "count": 1
+          }
+        ],
+        "falsifier": "a cross-owner read with a 200 and read-back"
+      },
+      {
+        "method_id": "MB-API-AUTHZ-02",
+        "method_name": "broken object property-level authorization",
+        "lens": "L10a",
+        "defence_target": "DT-06",
+        "attributes": [
+          "property level",
+          "property-level",
+          "sensitive property",
+          "mass assignment"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP API",
+            "id": "API3:2023",
+            "policy": "allowed"
+          },
+          {
+            "framework": "CWE",
+            "id": "CWE-862",
+            "policy": "allowed_with_review"
+          }
+        ],
+        "measured_evidence": [],
+        "falsifier": "the property is intended to be readable or writable by that caller"
+      },
+      {
+        "method_id": "MB-API-AUTHZ-03",
+        "method_name": "broken function-level authorization",
+        "lens": "L4",
+        "defence_target": "DT-04",
+        "attributes": [
+          "function level",
+          "function-level",
+          "role bypass",
+          "privileged function",
+          "admin function"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP API",
+            "id": "API5:2023",
+            "policy": "allowed"
+          },
+          {
+            "framework": "CWE",
+            "id": "CWE-862",
+            "policy": "allowed_with_review"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "event_id": "ERR_ACCESS_ADMIN",
+            "signal_type": "auth_denied",
+            "tag": "measured",
+            "count": 2
+          }
+        ],
+        "falsifier": "the function is authorized for the caller or the request is denied with no state change"
+      },
+      {
+        "method_id": "MB-API-AUTHZ-04",
+        "method_name": "dead session treated as a boundary",
+        "lens": "L4",
+        "defence_target": "DT-06",
+        "attributes": [
+          "dead session",
+          "session expiration",
+          "session revoke",
+          "expired session",
+          "stale token"
+        ],
+        "standard_refs": [
+          {
+            "framework": "CWE",
+            "id": "CWE-613",
+            "policy": "background_unverified"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "event_id": "ERR_AUTH_UNAUTHORIZED",
+            "signal_type": "auth_denied",
+            "tag": "measured",
+            "count": 1
+          }
+        ],
+        "falsifier": "an expired session still authorizes a successful action with read-back"
+      }
+    ],
+    "tool-use abuse": [
+      {
+        "method_id": "MB-TOOL-01",
+        "method_name": "direct protected-file read via tool",
+        "lens": "L7",
+        "defence_target": "DT-04",
+        "attributes": [
+          "protected path",
+          ".env",
+          "server.pem",
+          "command policy",
+          "denied by command policy"
+        ],
+        "standard_refs": [
+          {
+            "framework": "MITRE ATT&CK",
+            "id": "T1059",
+            "policy": "behaviour_annotation_only"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-env-direct",
+            "signal_type": "path_policy",
+            "tag": "measured"
+          },
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-pem-direct",
+            "signal_type": "path_policy",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a path-policy hit later shown to be an edge verdict"
+      },
+      {
+        "method_id": "MB-TOOL-02",
+        "method_name": "indirection to bypass path policy from inside a program",
+        "lens": "L7",
+        "defence_target": "DT-01 and DT-04",
+        "attributes": [
+          "read from python",
+          "read inside program",
+          "python read",
+          "os.open",
+          "open('.env')",
+          "read file inside script",
+          "inside a python program",
+          "python program",
+          "read completed twice from inside a python"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP",
+            "id": "LLM01:2025",
+            "policy": "allowed"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-env-indirect",
+            "signal_type": "bypass_confirmed",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a re-test showing the read is blocked by an app-layer control with read-back"
+      },
+      {
+        "method_id": "MB-TOOL-03",
+        "method_name": "output masker bypass by repackaging the secret",
+        "lens": "L7",
+        "defence_target": "DT-05",
+        "attributes": [
+          "reverse",
+          "encode",
+          "base64",
+          "hex encode",
+          "repack",
+          "obfuscate"
+        ],
+        "standard_refs": [
+          {
+            "framework": "OWASP",
+            "id": "LLM05:2025",
+            "policy": "allowed"
+          }
+        ],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-reverse-encode",
+            "signal_type": "semantic_refusal",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a reversed or encoded secret emitted with no block"
+      },
+      {
+        "method_id": "MB-TOOL-04",
+        "method_name": "move protected data out of bounds via copy",
+        "lens": "L5",
+        "defence_target": "DT-06",
+        "attributes": [
+          "copy to tmp",
+          "backup copy",
+          "move out",
+          "out of bounds",
+          "export secret"
+        ],
+        "standard_refs": [],
+        "measured_evidence": [
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-copy-tmp",
+            "signal_type": "move_out_of_bounds",
+            "tag": "measured"
+          },
+          {
+            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "event_id": "lockdown-backup-refusal",
+            "signal_type": "semantic_refusal",
+            "tag": "measured"
+          }
+        ],
+        "falsifier": "a backup copy survives a revoke and is read back by a third party"
+      }
+    ]
+  }
+}

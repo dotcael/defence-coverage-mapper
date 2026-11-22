@@ -1,0 +1,205 @@
+{
+  "version": "FM-1.0.0",
+  "source": "GPT-6 round 15 framework coverage answer, corrected refs",
+  "policy": {
+    "background_only": [
+      "CWE-20",
+      "CWE-74",
+      "CWE-284"
+    ],
+    "allowed_with_review": [
+      "CWE-77",
+      "CWE-862"
+    ],
+    "allowed": [
+      "CWE-639",
+      "OWASP LLM01:2025",
+      "OWASP LLM02:2025",
+      "OWASP LLM05:2025",
+      "OWASP LLM06:2025",
+      "OWASP LLM07:2025",
+      "OWASP LLM08:2025",
+      "OWASP LLM10:2025",
+      "OWASP API1:2023",
+      "OWASP API3:2023",
+      "OWASP API4:2023",
+      "OWASP API5:2023",
+      "AML.T0051",
+      "AML.T0051.001",
+      "AML.T0053",
+      "AML.T0054",
+      "AML.T0080",
+      "T1059",
+      "T1190",
+      "T1078"
+    ],
+    "partial": [],
+    "unreachable": [
+      "ISO/IEC 42001 clause ids",
+      "OWASP MASVS ids",
+      "Google SAIF element numbers",
+      "CAPEC LLM prompt injection id"
+    ],
+    "verified": [
+      "ASVS v5.0.0-16.3.2",
+      "ASVS v5.0.0-16.3.3",
+      "AML.T0051",
+      "AML.T0051.001",
+      "AML.T0053",
+      "AML.T0054",
+      "AML.T0080",
+      "CAPEC-153",
+      "CAPEC-242",
+      "CAPEC-233",
+      "CAPEC-115"
+    ]
+  },
+  "rows": [
+    {
+      "id": "FM-01",
+      "attribute": "untrusted user instruction overriding prior instructions",
+      "method": "prompt injection",
+      "refs": [
+        "OWASP LLM01:2025",
+        "AML.T0051"
+      ],
+      "falsifier": "no attacker-controlled instruction reaches the model"
+    },
+    {
+      "id": "FM-02",
+      "attribute": "retrieved or tool-returned content acting as instruction",
+      "method": "indirect prompt injection",
+      "refs": [
+        "OWASP LLM01:2025",
+        "AML.T0051.001"
+      ],
+      "falsifier": "content is not supplied to the model as context"
+    },
+    {
+      "id": "FM-03",
+      "attribute": "persistent context or memory manipulation",
+      "method": "AI agent context poisoning",
+      "refs": [
+        "AML.T0080"
+      ],
+      "conditional_ref": "OWASP LLM08:2025 only for vectors or embeddings",
+      "falsifier": "effect is limited to one prompt"
+    },
+    {
+      "id": "FM-04",
+      "attribute": "manipulated response causes unauthorized tool action",
+      "method": "excessive agency / tool invocation",
+      "refs": [
+        "OWASP LLM06:2025",
+        "AML.T0053"
+      ],
+      "falsifier": "no tool call or side effect recorded"
+    },
+    {
+      "id": "FM-05",
+      "attribute": "prompt assembled from untrusted data changes downstream parsing",
+      "method": "CWE-77 reviewed weakness mapping",
+      "refs": [
+        "CWE-77"
+      ],
+      "falsifier": "application does not construct a downstream command or prompt from the input"
+    },
+    {
+      "id": "FM-06",
+      "attribute": "client-controlled object key reaches another user's object",
+      "method": "broken object-level authorization",
+      "refs": [
+        "OWASP API1:2023",
+        "CWE-639"
+      ],
+      "falsifier": "cross-owner request denied with no read-back"
+    },
+    {
+      "id": "FM-07",
+      "attribute": "sensitive object property exposed or modified",
+      "method": "broken object property-level authorization",
+      "refs": [
+        "OWASP API3:2023",
+        "CWE-862"
+      ],
+      "falsifier": "property intended to be readable or writable by caller"
+    },
+    {
+      "id": "FM-08",
+      "attribute": "lower role invokes privileged function",
+      "method": "broken function-level authorization",
+      "refs": [
+        "OWASP API5:2023",
+        "CWE-862"
+      ],
+      "falsifier": "function authorized for caller or request denied"
+    },
+    {
+      "id": "FM-09",
+      "attribute": "unrestricted resource use or missing rate control",
+      "method": "unrestricted resource consumption",
+      "refs": [
+        "OWASP API4:2023",
+        "OWASP LLM10:2025"
+      ],
+      "falsifier": "no consumption behavior or missing limit described"
+    },
+    {
+      "id": "FM-10",
+      "attribute": "shell or scripting interpreter ran commands",
+      "method": "command and scripting interpreter behaviour",
+      "refs": [
+        "T1059"
+      ],
+      "falsifier": "no interpreter ran"
+    },
+    {
+      "id": "FM-11",
+      "attribute": "internet-facing application exploited for initial access",
+      "method": "exploit public-facing application",
+      "refs": [
+        "T1190"
+      ],
+      "falsifier": "application not internet-facing"
+    },
+    {
+      "id": "FM-12",
+      "attribute": "compromised or valid account used as adversary behaviour",
+      "method": "valid accounts",
+      "refs": [
+        "T1078"
+      ],
+      "falsifier": "ordinary use of own account only"
+    },
+    {
+      "id": "FM-13",
+      "attribute": "input data manipulation pattern",
+      "method": "CAPEC-153",
+      "refs": [],
+      "policy": "conditional",
+      "falsifier": "no input-format manipulation"
+    },
+    {
+      "id": "FM-14",
+      "attribute": "execution context interprets injected code",
+      "method": "CAPEC-242",
+      "refs": [],
+      "policy": "conditional",
+      "falsifier": "no execution context"
+    },
+    {
+      "id": "FM-15",
+      "attribute": "observed privilege increase",
+      "method": "CAPEC-233",
+      "refs": [],
+      "policy": "conditional",
+      "falsifier": "no privilege increase"
+    }
+  ],
+  "verification": {
+    "date": "2026-11-22",
+    "asvs": "Official OWASP/ASVS v5.0.0 en markdown 0x25-V16 lines 48-49 confirm 16.3.2 failed authorization attempts and 16.3.3 attempts to bypass controls.",
+    "atlas": "ATLAS-2026.07.yaml from atlas.mitre.org contains all five ids.",
+    "capec": "CAPEC pages 153, 242, 233 and 115 return verified titles; no dedicated LLM prompt injection id found in the reviewed set."
+  }
+}

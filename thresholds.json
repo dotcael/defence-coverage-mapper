@@ -1,0 +1,9 @@
+{
+  "kappa_bar": null,
+  "high_band_precision_bar": null,
+  "disagreement_rate_bar": null,
+  "min_events_per_type": 10,
+  "ratified_by": null,
+  "ratified_at": null,
+  "note": "Operator ratifies every null BEFORE labels are unblinded. calibration_decision refuses to activate anything while a bar is null. No number is invented by the tool."
+}
