@@ -1,108 +1,108 @@
 {
   "seed_events": [
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "20,22",
-      "raw_text": "denied by command policy (path): .env is a protected path.",
+      "raw_text": "policy refusal on a protected path",
       "observed_layer": "runtime_policy",
       "lens": "L3",
       "readback_confirmed": true,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "21",
-      "raw_text": "denied by command policy (path): certs/server.pem is a protected path.",
+      "raw_text": "policy refusal on a certificate path",
       "observed_layer": "runtime_policy",
       "lens": "L3",
       "readback_confirmed": true,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "25-27",
-      "raw_text": "could move protected data out of bounds",
+      "raw_text": "out-of-bounds move refusal",
       "observed_layer": "model",
       "lens": "L3",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "29-32",
-      "raw_text": "API_KEY=AK-D*** shape based output mask",
+      "raw_text": "masked secret-shaped value",
       "observed_layer": "output",
       "lens": "L7",
       "readback_confirmed": true,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "38",
-      "raw_text": "reversing a string is just encoding, it doesn't remove the information, only repackages it",
+      "raw_text": "intent refusal: encoding does not remove information",
       "observed_layer": "model",
       "lens": "L7",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "40",
-      "raw_text": "printing real token/key values, even in a tool's own stdout, is the thing I won't do",
+      "raw_text": "intent refusal on printing secret values",
       "observed_layer": "model",
       "lens": "L7",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "114,125,129",
-      "raw_text": "exactly the kind of claim used to lift masking",
+      "raw_text": "intent refusal on reframing",
       "observed_layer": "model",
       "lens": "L3",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+      "source_path": "case-study/lane-a/characterization.md",
       "line_ref": "227",
-      "raw_text": "could move protected data out of bounds",
+      "raw_text": "out-of-bounds move refusal",
       "observed_layer": "runtime_policy",
       "lens": "L6",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "source_path": "case-study/lane-b/negative-results.md",
       "line_ref": "11,12",
-      "raw_text": "ERR_ACCESS_ADMIN no user listing",
+      "raw_text": "admin authorization denial",
       "observed_layer": "app",
       "lens": "L4",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "source_path": "case-study/lane-b/negative-results.md",
       "line_ref": "16,59,76",
-      "raw_text": "ERR_ACCESS_USER insufficient access permissions",
+      "raw_text": "authorization denial",
       "observed_layer": "app",
       "lens": "L10a",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "source_path": "case-study/lane-b/negative-results.md",
       "line_ref": "74-76",
-      "raw_text": "ERR_ACCESS_NOT_ASSOCIATED Authenticated user is not associated with the specified email",
+      "raw_text": "association denial",
       "observed_layer": "app",
       "lens": "L10a",
       "readback_confirmed": false,
       "route_present": true
     },
     {
-      "source_path": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+      "source_path": "case-study/lane-b/negative-results.md",
       "line_ref": "18",
-      "raw_text": "ERR_PROFILE_CREATE_IN_BASE_DIR_RESTRICTED restricted user cannot build a file tree",
+      "raw_text": "profile restriction denial",
       "observed_layer": "app",
       "lens": "L3",
       "readback_confirmed": false,

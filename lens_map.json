@@ -29,7 +29,7 @@
       {
         "technique": "interpreter indirection with the path inside a Python program, never on the command line",
         "expected_signal": "no policy string, read-back shows the read completed",
-        "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md, OPEN section"
+        "pointer": "case-study/lane-a/characterization.md, OPEN section"
       }
     ],
     "DT-02": [

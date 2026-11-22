@@ -103,7 +103,7 @@ it in the hint.
 
 ## Seed evidence
 
-The converter is tested against Lockdown block events with exact strings, the kiteworks `ERR_*`
+The converter is tested against controlled lab block events with exact strings, the lane-b authorization codes
 ledger, and the Blind Trust dead-class table. Those records are referenced by path and line in the
 probe catalogue; raw corpora are not copied into this repo. `InjecAgent` and `jailbreak_llms` are
 both MIT and are cited, not vendored.

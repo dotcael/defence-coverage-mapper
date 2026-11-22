@@ -109,7 +109,7 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-intent-refusal",
             "signal_type": "semantic_refusal",
             "tag": "measured"
@@ -132,13 +132,13 @@
         "standard_refs": [],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-reverse-encode",
             "signal_type": "semantic_refusal",
             "tag": "measured"
           },
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-decoy-reframe",
             "signal_type": "semantic_refusal",
             "tag": "measured"
@@ -204,14 +204,14 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "pointer": "case-study/lane-b/negative-results.md",
             "event_id": "ERR_ACCESS_USER",
             "signal_type": "auth_denied",
             "tag": "measured",
             "count": 3
           },
           {
-            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "pointer": "case-study/lane-b/negative-results.md",
             "event_id": "ERR_ACCESS_NOT_ASSOCIATED",
             "signal_type": "auth_denied",
             "tag": "measured",
@@ -272,7 +272,7 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "pointer": "case-study/lane-b/negative-results.md",
             "event_id": "ERR_ACCESS_ADMIN",
             "signal_type": "auth_denied",
             "tag": "measured",
@@ -302,7 +302,7 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/yeswehack/kiteworks/NEGATIVE-RESULTS.md",
+            "pointer": "case-study/lane-b/negative-results.md",
             "event_id": "ERR_AUTH_UNAUTHORIZED",
             "signal_type": "auth_denied",
             "tag": "measured",
@@ -334,13 +334,13 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-env-direct",
             "signal_type": "path_policy",
             "tag": "measured"
           },
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-pem-direct",
             "signal_type": "path_policy",
             "tag": "measured"
@@ -373,7 +373,7 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-env-indirect",
             "signal_type": "bypass_confirmed",
             "tag": "measured"
@@ -403,7 +403,7 @@
         ],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-reverse-encode",
             "signal_type": "semantic_refusal",
             "tag": "measured"
@@ -426,13 +426,13 @@
         "standard_refs": [],
         "measured_evidence": [
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-copy-tmp",
             "signal_type": "move_out_of_bounds",
             "tag": "measured"
           },
           {
-            "pointer": "platforms/huntr/lockdown/CHARACTERIZATION-2026-11-20.md",
+            "pointer": "case-study/lane-a/characterization.md",
             "event_id": "lockdown-backup-refusal",
             "signal_type": "semantic_refusal",
             "tag": "measured"

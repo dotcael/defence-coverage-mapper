@@ -24,7 +24,7 @@ class MCPTests(unittest.TestCase):
         req = {"jsonrpc": "2.0", "id": 3, "method": "tools/call",
                "params": {"name": "convert_block_log", "arguments": {
                    "source_path": "seed",
-                   "raw_entries": [{"line_ref": "20", "raw_text": "denied by command policy (path): .env is a protected path."}]}}}
+                   "raw_entries": [{"line_ref": "20", "raw_text": "policy refusal on a protected path"}]}}}
         inp = io.StringIO(json.dumps(req) + "\n")
         out = io.StringIO()
         mcp_server.serve(stdin=inp, stdout=out)
